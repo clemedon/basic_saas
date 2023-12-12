@@ -5,11 +5,7 @@ import (
 	"fmt"
 )
 
-type Stringer interface {
-	String() string
-}
-
-// Bitcoin
+// Bitcoin: an amount of Bitcoins
 
 type Bitcoin int
 
@@ -17,7 +13,7 @@ func (b Bitcoin) String() string {
 	return fmt.Sprintf("%d BTC", b)
 }
 
-// Wallet
+// Wallet: store someone's Bitcoin.
 
 type Wallet struct {
 	balance Bitcoin

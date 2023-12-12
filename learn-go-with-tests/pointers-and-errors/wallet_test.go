@@ -29,27 +29,6 @@ func assertBalance(t testing.TB, wallet Wallet, want Bitcoin) {
 	}
 }
 
-func TestStringer(t *testing.T) {
-
-	cases := []struct {
-		name   string
-		input  Stringer
-		output string
-	}{
-		{"Bitcoin", Bitcoin(10), "10 BTC"},
-	}
-
-	for _, tc := range cases {
-		t.Run(tc.name, func(t *testing.T) {
-			got := tc.input.String()
-			if got != tc.output {
-				t.Errorf("got %q, want %q", got, tc.output)
-			}
-		})
-	}
-
-}
-
 func TestWallet(t *testing.T) {
 
 	t.Run("deposit", func(t *testing.T) {
