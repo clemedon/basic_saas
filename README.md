@@ -23,6 +23,3 @@ ROADMAP
   - [ ] Create Backend — *uml, ddd, golang*
 
   - [ ] DevOps — *podman, ansible, elk/graylog, prometheus, grafana*
-
-
-
