@@ -3,9 +3,9 @@ package main
 type Dictionary map[string]string
 
 const (
-	ErrNotFound          = DictionaryErr("could not find the word you were looking for")
 	ErrWordExists        = DictionaryErr("the word you were looking for already exists")
-	ErrWordDoesNotExists = DictionaryErr("cannot update word because it does not exist")
+	ErrNotFound          = DictionaryErr("could not find the word you were looking for")
+	ErrNotFoundForUpdate = DictionaryErr("cannot update word because it does not exist")
 )
 
 type DictionaryErr string
@@ -40,7 +40,7 @@ func (d Dictionary) Update(word, definition string) error {
 
 	switch err {
 	case ErrNotFound:
-		return ErrWordDoesNotExists
+		return ErrNotFoundForUpdate
 	case nil:
 		d[word] = definition
 	}

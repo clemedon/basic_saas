@@ -65,7 +65,7 @@ func TestUpdate(t *testing.T) {
 
 		err := dictionary.Update(word, definition)
 
-		assertError(t, err, ErrWordDoesNotExists)
+		assertError(t, err, ErrNotFoundForUpdate)
 	})
 }
 
