@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestCount(t *testing.T) {
+func TestCountdown(t *testing.T) {
 	buffer := &bytes.Buffer{}
 
 	Countdown(buffer)

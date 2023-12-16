@@ -1,10 +1,15 @@
 package main
 
 import (
-	"bytes"
 	"fmt"
+	"io"
+	"os"
 )
 
-func Countdown(dest *bytes.Buffer) {
+func Countdown(dest io.Writer) {
 	fmt.Fprint(dest, "3")
+}
+
+func main() {
+	Countdown(os.Stdout)
 }
