@@ -7,13 +7,13 @@ import (
 	"time"
 )
 
+const sleep = "sleep"
+const write = "write"
+
 // An interface that satisfy both, the Sleeper and io.Writer interfaces.
 type SpyCountdownOperations struct {
 	Calls []string
 }
-
-const sleep = "sleep"
-const write = "write"
 
 func (s *SpyCountdownOperations) Sleep() {
 	s.Calls = append(s.Calls, sleep)
@@ -22,6 +22,14 @@ func (s *SpyCountdownOperations) Sleep() {
 func (s *SpyCountdownOperations) Write(p []byte) (n int, err error) {
 	s.Calls = append(s.Calls, write)
 	return
+}
+
+type SpyTime struct {
+	durationSlept time.Duration
+}
+
+func (s *SpyTime) Sleep(duration time.Duration) {
+	s.durationSlept = duration
 }
 
 func TestCountdown(t *testing.T) {
@@ -56,15 +64,6 @@ func TestCountdown(t *testing.T) {
 			t.Errorf("wanted calls %v got %v", want, spySleepPrinter.Calls)
 		}
 	})
-
-}
-
-type SpyTime struct {
-	durationSlept time.Duration
-}
-
-func (s *SpyTime) Sleep(duration time.Duration) {
-	s.durationSlept = duration
 }
 
 func TestConfigurableSleeper(t *testing.T) {
