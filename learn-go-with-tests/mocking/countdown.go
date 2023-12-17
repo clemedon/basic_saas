@@ -11,6 +11,14 @@ type Sleeper interface {
 	Sleep()
 }
 
+type ConfigurableSleeper struct {
+	duration time.Duration
+	sleep    func(time.Duration)
+}
+
+func (c *ConfigurableSleeper) Sleep() {
+}
+
 const countdownStart = 3
 const finalWord = "Go!"
 
