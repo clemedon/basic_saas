@@ -11,17 +11,24 @@ type Sleeper interface {
 	Sleep()
 }
 
+type RealSleeper struct{}
+
+func (d *RealSleeper) Sleep() {
+	time.Sleep(1 * time.Second)
+}
+
 const finalWord = "Go!"
 const countdownStart = 3
 
-func Countdown(dest io.Writer) {
+func Countdown(dest io.Writer, sleeper Sleeper) {
 	for i := countdownStart; i > 0; i-- {
 		fmt.Fprintln(dest, i)
-		time.Sleep(1 * time.Second)
+		sleeper.Sleep()
 	}
 	fmt.Fprint(dest, finalWord)
 }
 
 func main() {
-	Countdown(os.Stdout)
+	sleeper := &RealSleeper{}
+	Countdown(os.Stdout, sleeper)
 }
