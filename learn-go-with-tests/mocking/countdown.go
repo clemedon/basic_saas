@@ -21,6 +21,7 @@ func (c *ConfigurableSleeper) Sleep() {
 }
 
 const countdownStart = 3
+const countdownStepsDelay = 1
 const finalWord = "Go!"
 
 func Countdown(dest io.Writer, sleeper Sleeper) {
@@ -32,6 +33,6 @@ func Countdown(dest io.Writer, sleeper Sleeper) {
 }
 
 func main() {
-	sleeper := &ConfigurableSleeper{1 * time.Second, time.Sleep}
+	sleeper := &ConfigurableSleeper{countdownStepsDelay * time.Second, time.Sleep}
 	Countdown(os.Stdout, sleeper)
 }
