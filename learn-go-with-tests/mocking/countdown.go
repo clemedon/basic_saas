@@ -31,13 +31,7 @@ func Countdown(dest io.Writer, sleeper Sleeper) {
 	fmt.Fprint(dest, finalWord)
 }
 
-type RealSleeper struct{}
-
-func (d *RealSleeper) Sleep() {
-	time.Sleep(1 * time.Second)
-}
-
 func main() {
-	sleeper := &RealSleeper{}
+	sleeper := &ConfigurableSleeper{1 * time.Second, time.Sleep}
 	Countdown(os.Stdout, sleeper)
 }
