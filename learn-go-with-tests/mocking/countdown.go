@@ -17,6 +17,7 @@ type ConfigurableSleeper struct {
 }
 
 func (c *ConfigurableSleeper) Sleep() {
+	c.sleep(c.duration)
 }
 
 const countdownStart = 3
